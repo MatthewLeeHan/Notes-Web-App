@@ -1,0 +1,65 @@
+<template>
+  <div class="container">
+    <h1>Note #{{ note.id }}</h1>
+    <h2><input type="text" placeholder="Enter title here..." class="titleInput"></h2>
+    <div class="innerBox">
+      <textarea class="noteTextArea"></textarea>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+    props: ['note'],  
+}
+  
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped>
+.container{
+  width: 30%;
+  margin: 0 auto; /* centering everything */
+  height: 325px;
+  box-shadow: 0px 5px 5px #888888;
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+}
+h1{
+  text-align: left;
+  padding: 20px 0px 0px 30px;
+  font-weight: 500;
+}
+h2{
+  text-align: left;
+  padding: 20px 0px 0px 30px;
+  margin-top: -40px;
+  font-weight: 200;
+  font-size: 20px;
+}
+.noteTextArea{
+  margin: 0;
+  padding: 0;
+  width: 95%;
+  border: 1px solid rgb(193, 193, 193);
+  border-radius: 5px;
+  resize: none;
+  height: 180px;
+  font-size: 15px;
+}
+.innerBox{
+  width: 93%;
+  height: 180px;
+  margin: 0 auto;
+}
+.titleInput{
+  border: none;
+  font-size: 20px;
+  background: none;
+}
+.titleInput:focus{
+  outline: none;
+}
+</style>
