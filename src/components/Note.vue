@@ -1,9 +1,10 @@
 <template>
   <div class="container">
-    <h1>Note #{{ note.id }}</h1>
+    <h1>Note </h1>
+    <!-- <h1>Note #{{ note.id }}</h1> -->
     <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="title" @change="autoSave()"></h2>
     <div class="innerBox">
-      <textarea class="noteTextArea"></textarea>
+      <textarea v-model="body" class="noteTextArea" @change="autoSave()"></textarea>
     </div>
   </div>
 </template>
@@ -12,12 +13,19 @@
   import {titlesRef} from '/Users/matthew.han/Documents/test-project/test-1/src/firebase.js';
 
   export default {
-      props: ['note'],  
+      props: ['note','title','body'],
       methods: {
         autoSave(){
-          titlesRef.push({title: this.title, edit: true})
+          titlesRef.push({title: this.title, body: this.body, edit: true})
         }
       },
+      data: function(){
+        return{
+          title:'',
+          body:'',
+          edit: false
+        }
+      }
   }
 </script>
 

@@ -8,7 +8,8 @@
     <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note>
     <ul>
       <li v-for="title of titles" :key="title['.key']">
-        {{ title }}
+        <Note v-bind:title="title.title" v-bind:body="title.body"></Note>
+        <!-- {{ title.body }} -->
       </li>
     </ul>
     <button class="addNoteBtn" v-on:click="addCard"><img src="./assets/plus.svg" class="plusIcon"></button>
@@ -36,7 +37,7 @@ export default {
     return{
       notes:[
         {
-        'id': 1,
+        // 'id': 1,
         'title': '',
         'body': ''
         }
