@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Note #{{ note.id }}</h1>
-    <h2><input type="text" placeholder="Enter title here..." class="titleInput"></h2>
+    <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="title" @change="autoSave()"></h2>
     <div class="innerBox">
       <textarea class="noteTextArea"></textarea>
     </div>
@@ -9,10 +9,16 @@
 </template>
 
 <script>
-export default {
-    props: ['note'],  
-}
-  
+  import {titlesRef} from '/Users/matthew.han/Documents/test-project/test-1/src/firebase.js';
+
+  export default {
+      props: ['note'],  
+      methods: {
+        autoSave(){
+          titlesRef.push({title: this.title, edit: true})
+        }
+      },
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -5,9 +5,13 @@
     <Nav></Nav>
     <!-- <Note></Note> -->
     <SideBar></SideBar>
-    <Note v-for="note in notes" v-bind:note = "note" v-bind:key="note.id"></Note>
+    <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note>
+    <ul>
+      <li v-for="title of titles" :key="title['.key']">
+        {{ title }}
+      </li>
+    </ul>
     <button class="addNoteBtn" v-on:click="addCard"><img src="./assets/plus.svg" class="plusIcon"></button>
-
   </div>
 </template>
 
@@ -15,6 +19,8 @@
 import Note from './components/Note.vue'
 import Nav from './components/Nav.vue'
 import SideBar from './components/SideBar.vue'
+import {titlesRef} from './firebase';
+
 
 export default {
   name: 'app',
@@ -22,6 +28,9 @@ export default {
     Note,
     Nav,
     SideBar,
+  },
+  firebase:{
+    titles: titlesRef
   },
   data: function(){
     return{
@@ -39,10 +48,10 @@ export default {
       this.notes.push({'id':this.notes.length+1,'title':'','body':''})
       e.preventDefault()
     },
-    showNav: function(e){
-      console.log('will show nav ...')
-      e.preventDefault()
-    }
+    // showNav: function(e){
+    //   console.log('will show nav ...')
+    //   e.preventDefault()
+    // }
   }
 }
 </script>
