@@ -4,6 +4,7 @@
   <div id="app">
     <Nav></Nav>
     <!-- <Note></Note> -->
+    <SideBar></SideBar>
     <Note v-for="note in notes" v-bind:note = "note" v-bind:key="note.id"></Note>
     <button class="addNoteBtn" v-on:click="addCard"><img src="./assets/plus.svg" class="plusIcon"></button>
 
@@ -19,7 +20,8 @@ export default {
   name: 'app',
   components: {
     Note,
-    Nav
+    Nav,
+    SideBar,
   },
   data: function(){
     return{
@@ -29,7 +31,7 @@ export default {
         'title': '',
         'body': ''
         }
-      ]
+      ],
     }
   },
   methods:{
@@ -61,7 +63,7 @@ body{
 
 .addNoteBtn{
   background-color: aquamarine;
-  position: absolute;
+  position: fixed;
   border: none;
   height: 80px;
   width: 80px;
@@ -71,6 +73,7 @@ body{
   right: 30px;
   color: black;
   outline:none !important;
+  box-shadow: 0px 5px 5px #888888;
 }
 .addNoteBtn:hover{
   background-color: aqua;

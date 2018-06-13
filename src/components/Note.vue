@@ -19,17 +19,17 @@ export default {
 <style scoped>
 .container{
   width: 30%;
-  margin: 0 auto; /* centering everything */
+  margin: 1.5% 1% 1.5% 1%; /* centering everything */
   height: 325px;
   box-shadow: 0px 5px 5px #888888;
   border-radius: 5px;
   background-color: white;
-  margin-top: 2.5%;
-  margin-bottom: 2.5%;
+  display: inline-block;
+  z-index: -1;
 }
 h1{
   text-align: left;
-  padding: 20px 0px 0px 30px;
+  padding: 0px 0px 0px 30px;
   font-weight: 500;
 }
 h2{
