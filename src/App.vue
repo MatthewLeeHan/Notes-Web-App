@@ -7,7 +7,7 @@
     <SideBar></SideBar>
     <!-- <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note> -->
     <div class="savedNotesLoader" v-for="title of titles.slice().reverse()" :key="title['.key']">
-      <Note v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:title="title.title" v-bind:body="title.body"></Note>
+      <Note v-on:changeTitle="updateTitle($event)" v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:title="title.title" v-bind:body="title.body"></Note>
         <!-- {{ title.body }} -->
     </div>
     <button class="addNoteBtn" v-on:click="addCard"><img src="./assets/plus.svg" class="plusIcon"></button>
@@ -40,6 +40,9 @@ export default {
         // 'body': ''
         }
       ],
+      key:'',
+      title:'',
+      body:''
     }
   },
   methods:{
@@ -52,6 +55,9 @@ export default {
     //   console.log('will show nav ...')
     //   e.preventDefault()
     // }
+    updateTitle: function(updatedTitle){
+      titlesRef.child(updatedTitle).update({title: "lmfao"}) /** wtf do i set title to ugh */
+    }
   }
 }
 </script>
@@ -66,7 +72,7 @@ body{
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: center; /** centering my cards cause divs treated as text element */
   color: #2c3e50;
 }
 

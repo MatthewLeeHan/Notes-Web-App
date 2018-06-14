@@ -18,12 +18,14 @@
       methods: {
         autoSave(key){
           // titlesRef.push({title: this.title, body: this.body, edit: true})
-          if(titlesRef.child(key) != null){
-            titlesRef.child(key).update({title: this.title, body: this.body})
-          }
-          else{
-            titlesRef.push({title: this.title, body: this.body, edit: true})
-          }
+          // if(titlesRef.child(key) != null){
+          //   titlesRef.child(key).update({title: this.title, body: this.body})
+
+          this.$emit('changeTitle',key)
+          // }
+          // else{
+          //   titlesRef.push({title: this.title, body: this.body, edit: true})
+          // }
         },
         removeNote(key){
           titlesRef.child(key).remove();
