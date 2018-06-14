@@ -5,13 +5,11 @@
     <Nav></Nav>
     <!-- <Note></Note> -->
     <SideBar></SideBar>
-    <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note>
-    <ul>
-      <li v-for="title of titles" :key="title['.key']">
-        <Note v-bind:title="title.title" v-bind:body="title.body"></Note>
+    <!-- <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note> -->
+    <div class="savedNotesLoader" v-for="title of titles.slice().reverse()" :key="title['.key']">
+      <Note v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:title="title.title" v-bind:body="title.body"></Note>
         <!-- {{ title.body }} -->
-      </li>
-    </ul>
+    </div>
     <button class="addNoteBtn" v-on:click="addCard"><img src="./assets/plus.svg" class="plusIcon"></button>
   </div>
 </template>
@@ -37,16 +35,17 @@ export default {
     return{
       notes:[
         {
-        // 'id': 1,
-        'title': '',
-        'body': ''
+        // // 'id': 1,
+        // 'title': '',
+        // 'body': ''
         }
       ],
     }
   },
   methods:{
     addCard: function(e){
-      this.notes.push({'id':this.notes.length+1,'title':'','body':''})
+      // this.notes.push({'id':this.notes.length+1,'title':'','body':''})
+      titlesRef.push({title: '', body: '', edit: true})
       e.preventDefault()
     },
     // showNav: function(e){
@@ -92,4 +91,9 @@ body{
   width: 25px;
   margin-top: 10px;
 }
+.savedNotesLoader{
+  display: inline-block;
+}
+
+
 </style>

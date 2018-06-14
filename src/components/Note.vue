@@ -1,22 +1,32 @@
 <template>
   <div class="container">
-    <h1>Note </h1>
-    <!-- <h1>Note #{{ note.id }}</h1> -->
-    <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="title" @change="autoSave()"></h2>
-    <div class="innerBox">
-      <textarea v-model="body" class="noteTextArea" @change="autoSave()"></textarea>
+      <h1>Note #{{noteIndex+1}}</h1>
+      <button class="delBtn" v-on:click="removeNote(keyvalue)"><img class="trashIcon" src="../assets/trash.svg"></button>
+      <!-- <h1>Note #{{ note.id }}</h1> -->
+      <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="title" v-on:change="autoSave(keyvalue)"></h2>
+      <div class="innerBox">
+        <textarea v-model="body" class="noteTextArea" v-on:change="autoSave(keyvalue)"></textarea>
+      </div>
     </div>
-  </div>
 </template>
 
 <script>
   import {titlesRef} from '/Users/matthew.han/Documents/test-project/test-1/src/firebase.js';
 
   export default {
-      props: ['note','title','body'],
+      props: ['note','title','body','keyvalue','noteIndex'], /** already declared warning popping up... why? */
       methods: {
-        autoSave(){
-          titlesRef.push({title: this.title, body: this.body, edit: true})
+        autoSave(key){
+          // titlesRef.push({title: this.title, body: this.body, edit: true})
+          if(titlesRef.child(key) != null){
+            titlesRef.child(key).update({title: this.title, body: this.body})
+          }
+          else{
+            titlesRef.push({title: this.title, body: this.body, edit: true})
+          }
+        },
+        removeNote(key){
+          titlesRef.child(key).remove();
         }
       },
       data: function(){
@@ -32,26 +42,29 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 .container{
-  width: 30%;
-  margin: 1.5% 1% 1.5% 1%; /* centering everything */
+  width: 400px;
   height: 325px;
   box-shadow: 0px 5px 5px #888888;
   border-radius: 5px;
   background-color: white;
   display: inline-block;
   z-index: -1;
+  margin: 10% 2vw 0 2vw;
 }
 h1{
+  padding: 0px 0px 0px 0px;
+  margin: 20px 205px 0 0;
   text-align: left;
-  padding: 0px 0px 0px 30px;
   font-weight: 500;
+  display: inline-block;
 }
 h2{
-  text-align: left;
-  padding: 20px 0px 0px 30px;
-  margin-top: -40px;
+  margin: 0 0 0 23px;
+  padding: 10px 0 20px 0;
   font-weight: 200;
   font-size: 20px;
+  display: block;
+  text-align: left;
 }
 .noteTextArea{
   margin: 0;
@@ -76,4 +89,14 @@ h2{
 .titleInput:focus{
   outline: none;
 }
+.delBtn{
+  border: none;
+  background-color: none;  
+  display: inline-block;
+}
+.trashIcon{
+  width: 20px;
+  
+}
+
 </style>
