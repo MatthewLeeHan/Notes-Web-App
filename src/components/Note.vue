@@ -20,8 +20,8 @@
           // titlesRef.push({title: this.title, body: this.body, edit: true})
           // if(titlesRef.child(key) != null){
           //   titlesRef.child(key).update({title: this.title, body: this.body})
-
-          this.$emit('changeTitle',key)
+          this.$emit('changeTitle',this.title, key, this.body)
+          // this.$emit('changeTitle',key)
           // }
           // else{
           //   titlesRef.push({title: this.title, body: this.body, edit: true})
@@ -33,9 +33,9 @@
       },
       data: function(){
         return{
-          title:'',
-          body:'',
-          edit: false
+          // title:'',
+          // body:'',
+          // edit: false
         }
       }
   }

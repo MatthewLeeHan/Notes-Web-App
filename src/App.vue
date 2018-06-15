@@ -7,7 +7,7 @@
     <SideBar></SideBar>
     <!-- <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note> -->
     <div class="savedNotesLoader" v-for="title of titles.slice().reverse()" :key="title['.key']">
-      <Note v-on:changeTitle="updateTitle($event)" v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:title="title.title" v-bind:body="title.body"></Note>
+      <Note v-on:changeTitle="updateTitle" v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:title="title.title" v-bind:body="title.body"></Note>
         <!-- {{ title.body }} -->
     </div>
     <button class="addNoteBtn" v-on:click="addCard"><img src="./assets/plus.svg" class="plusIcon"></button>
@@ -40,9 +40,9 @@ export default {
         // 'body': ''
         }
       ],
-      key:'',
-      title:'',
-      body:''
+      // key:'',
+      // title:'',
+      // body:''
     }
   },
   methods:{
@@ -55,8 +55,14 @@ export default {
     //   console.log('will show nav ...')
     //   e.preventDefault()
     // }
-    updateTitle: function(updatedTitle){
-      titlesRef.child(updatedTitle).update({title: "lmfao"}) /** wtf do i set title to ugh */
+    updateTitle: function(updatedTitle, idNum, updatedBody){
+      // console.log('ID: ' + updatedTitle)
+      // var updateNote = titlesRef.child(updatedTitle)
+      // console.log(updatedTitle)
+      // console.log(idNum)
+      titlesRef.child(idNum).update({title: updatedTitle, body: updatedBody})
+      
+
     }
   }
 }
