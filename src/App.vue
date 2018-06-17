@@ -1,4 +1,5 @@
 <!-- Goal: To make a simple to-do app without relying on a tutorial... -->
+<!-- Matthew Han -->
 
 <template>
   <div id="app">
