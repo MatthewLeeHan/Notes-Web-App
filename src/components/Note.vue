@@ -3,9 +3,10 @@
       <h1>Note #{{noteIndex+1}}</h1>
       <button class="delBtn" v-on:click="removeNote(keyvalue)"><img class="trashIcon" src="../assets/trash.svg"></button>
       <!-- <h1>Note #{{ note.id }}</h1> -->
-      <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="title" v-on:change="autoSave(keyvalue)"></h2>
+      <!-- <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="title" v-on:change="autoSave(keyvalue)"></h2> --> <!-- good one -->
+      <h2><input type="text" placeholder="Enter title here..." class="titleInput" v-model="yeet" v-on:change="autoSave(keyvalue)"></h2>
       <div class="innerBox">
-        <textarea v-model="body" class="noteTextArea" v-on:change="autoSave(keyvalue)"></textarea>
+        <textarea v-model="bodyyeet" class="noteTextArea" v-on:change="autoSave(keyvalue)"></textarea>
       </div>
     </div>
 </template>
@@ -14,14 +15,14 @@
   import {titlesRef} from '/Users/matthew.han/Documents/test-project/test-1/src/firebase.js';
 
   export default {
-      props: ['note','title','body','keyvalue','noteIndex'], /** already declared warning popping up... why? */
+      props: ['note','yeet','keyvalue','noteIndex','bodyyeet'], /** already declared warning popping up... why? */
       methods: {
         autoSave(key){
           // titlesRef.push({title: this.title, body: this.body, edit: true})
           // if(titlesRef.child(key) != null){
           //   titlesRef.child(key).update({title: this.title, body: this.body})
-          this.$emit('changeTitle',this.title, key, this.body)
-          // this.$emit('changeTitle',key)
+          this.$emit('changeTitle',this.yeet, key, this.bodyyeet)
+            // this.$emit('changeTitle',key)
           // }
           // else{
           //   titlesRef.push({title: this.title, body: this.body, edit: true})
@@ -31,13 +32,13 @@
           titlesRef.child(key).remove();
         }
       },
-      data: function(){
-        return{
-          // title:'',
-          // body:'',
-          // edit: false
-        }
-      }
+      // data: function(){
+      //   return{
+      //     // title:yeet, //og: jsut empty ''
+      //     // body:bodyyeet, //og:
+      //     // edit: false
+      //   }
+      // }
   }
 </script>
 
