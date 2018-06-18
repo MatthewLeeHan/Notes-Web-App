@@ -1,10 +1,17 @@
 <template>
     <nav>
-        <button class="hamburgerBtn"><img src="../assets/hamburger.svg" class="hamburgerIcon"></button>
+        <button v-on:click="showSideBar()" class="hamburgerBtn"><img src="../assets/hamburger.svg" class="hamburgerIcon"></button>
     </nav>
 </template>
 
 <script>
+export default{
+    methods:{
+        showSideBar: function(){
+            this.$emit('showSideBar')
+        }
+    }
+}
 
 </script>
 
@@ -24,7 +31,7 @@
         width: 40px;
         position: absolute;
         left: 30px;
-        top: 32px;
+        top: 24px;
         background-color: black;
         border: none;
         outline:none !important;

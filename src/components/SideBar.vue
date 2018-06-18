@@ -1,15 +1,18 @@
 <template>
-    <!-- <div class="sidebar">
+    <div class="sidebar">
 
-    </div> -->
+    </div>
 </template>
 
 <style scoped>
     .sidebar{
         background-color: white;
-        width: 300px;
+        width: 450px;
         height: 500px;
-        display: inline-block;
-        z-index: 1;
+        position: absolute;
+        left: 10px;
+        top: 90px;
+        z-index: 10;
+        box-shadow: 0px 5px 5px #888888;
     }
 </style>

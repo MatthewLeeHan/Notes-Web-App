@@ -5,7 +5,8 @@
   <div id="app">
     <Nav></Nav>
     <!-- <Note></Note> -->
-    <SideBar></SideBar>
+    <!-- <SideBar></SideBar> -->
+    <component v-on:showSideBar="toggleSideBar" v-bind:is="component"></component>
     <!-- <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note> -->
     <div class="savedNotesLoader" v-for="title in titles.slice().reverse()" :key="title['.key']">
       <Note v-on:changeTitle="updateTitle" v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:yeet="title.title" v-bind:bodyyeet="title.body"></Note>
@@ -34,6 +35,7 @@ export default {
   },
   data: function(){
     return{
+      component:''
       // newNote:{
       //   title:'',
       //   body: '',
@@ -57,12 +59,18 @@ export default {
       // console.log(updatedTitle)
       // console.log(idNum)
       titlesRef.child(idNum).update({title: updatedTitle, body: updatedBody})
+    },
+    toggleSideBar: function(){
+      alert('yeet')
     }
   }
 }
 </script>
 
 <style>
+#app{
+  z-index: -2;
+}
 body{
   background-color: rgb(239, 239, 239);
   padding: 0;
