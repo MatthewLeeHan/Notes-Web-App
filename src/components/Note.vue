@@ -51,7 +51,7 @@
   border-radius: 5px;
   background-color: white;
   display: inline-block;
-  z-index: -1;
+  z-index: 1;
   margin: 10% 2vw 0 2vw;
 }
 h1{
@@ -96,6 +96,7 @@ h2{
   border: none;
   background-color: none;  
   display: inline-block;
+  outline: none;
 }
 .trashIcon{
   width: 20px;

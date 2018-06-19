@@ -3,10 +3,10 @@
 
 <template>
   <div id="app">
-    <Nav></Nav>
+    <Nav v-on:showSideBar="toggle"></Nav>
     <!-- <Note></Note> -->
     <!-- <SideBar></SideBar> -->
-    <component v-on:showSideBar="toggleSideBar" v-bind:is="component"></component>
+    <component v-bind:is="component"></component>
     <!-- <Note v-for="note in notes" v-bind:note = "notes" v-bind:key="note.id"></Note> -->
     <div class="savedNotesLoader" v-for="title in titles.slice().reverse()" :key="title['.key']">
       <Note v-on:changeTitle="updateTitle" v-bind:keyvalue="title['.key']" v-bind:noteIndex="titles.indexOf(title)" class="savedNote" v-bind:yeet="title.title" v-bind:bodyyeet="title.body"></Note>
@@ -46,7 +46,7 @@ export default {
   methods:{
     addCard: function(e){
       // this.notes.push({'id':this.notes.length+1,'title':'','body':''})
-      titlesRef.push({title: '', body: '', edit: true})
+      titlesRef.push({title: '', body: '', edit: true, label:''})
       e.preventDefault()
     },
     // showNav: function(e){
@@ -60,8 +60,14 @@ export default {
       // console.log(idNum)
       titlesRef.child(idNum).update({title: updatedTitle, body: updatedBody})
     },
-    toggleSideBar: function(){
-      alert('yeet')
+    toggle: function(test){
+      // alert(test)
+      if(this.component === ''){
+        this.component= SideBar
+      }
+      else{
+        this.component = ''
+      }
     }
   }
 }

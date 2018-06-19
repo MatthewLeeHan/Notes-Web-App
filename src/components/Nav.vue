@@ -1,6 +1,7 @@
 <template>
     <nav>
         <button v-on:click="showSideBar()" class="hamburgerBtn"><img src="../assets/hamburger.svg" class="hamburgerIcon"></button>
+        <button class="profileBtn" ><img class="userIcon" src="../assets/user.svg"></button>
     </nav>
 </template>
 
@@ -8,7 +9,7 @@
 export default{
     methods:{
         showSideBar: function(){
-            this.$emit('showSideBar')
+            this.$emit('showSideBar','meep')
         }
     }
 }
@@ -31,7 +32,7 @@ export default{
         width: 40px;
         position: absolute;
         left: 30px;
-        top: 24px;
+        top: 33px;
         background-color: black;
         border: none;
         outline:none !important;
@@ -39,6 +40,18 @@ export default{
     .testt{
         height: 100px;
         background-color: red;
+    }
+    .profileBtn{
+        background: none;
+        border: none;
+        height: 80px;
+        float: right;
+        margin: 0 11px 0 0;
+        outline: none;
+    }
+    .userIcon{
+        width: 30px;
+        filter:invert(100%);
     }
 
 </style>
